@@ -7,19 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DF2BFED42A5B655C00E77431 /* ios_concurrency_cwcApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2BFED32A5B655C00E77431 /* ios_concurrency_cwcApp.swift */; };
 		DF2BFED62A5B655C00E77431 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2BFED52A5B655C00E77431 /* ContentView.swift */; };
 		DF2BFED82A5B655E00E77431 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF2BFED72A5B655E00E77431 /* Assets.xcassets */; };
 		DF2BFEDB2A5B655E00E77431 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF2BFEDA2A5B655E00E77431 /* Preview Assets.xcassets */; };
+		DF2BFEE42A5B6B5A00E77431 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2BFEE32A5B6B5A00E77431 /* User.swift */; };
+		DF2BFEE72A5B6BD100E77431 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2BFEE62A5B6BD100E77431 /* Post.swift */; };
+		DF2BFEEA2A5B6D7B00E77431 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2BFEE92A5B6D7B00E77431 /* APIService.swift */; };
+		DF59969A2A5B7B2500FCAD68 /* ConcurrencyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5996992A5B7B2500FCAD68 /* ConcurrencyApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DF2BFED02A5B655C00E77431 /* ios-concurrency-cwc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-concurrency-cwc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DF2BFED32A5B655C00E77431 /* ios_concurrency_cwcApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_concurrency_cwcApp.swift; sourceTree = "<group>"; };
 		DF2BFED52A5B655C00E77431 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DF2BFED72A5B655E00E77431 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF2BFEDA2A5B655E00E77431 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DF2BFEE12A5B665000E77431 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		DF2BFEE32A5B6B5A00E77431 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		DF2BFEE62A5B6BD100E77431 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		DF2BFEE92A5B6D7B00E77431 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		DF5996992A5B7B2500FCAD68 /* ConcurrencyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrencyApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,9 +58,11 @@
 		DF2BFED22A5B655C00E77431 /* ios-concurrency-cwc */ = {
 			isa = PBXGroup;
 			children = (
+				DF2BFEE22A5B6B5200E77431 /* Models */,
+				DF2BFEE82A5B6D6300E77431 /* Services */,
 				DF2BFEE12A5B665000E77431 /* Info.plist */,
-				DF2BFED32A5B655C00E77431 /* ios_concurrency_cwcApp.swift */,
 				DF2BFED52A5B655C00E77431 /* ContentView.swift */,
+				DF5996992A5B7B2500FCAD68 /* ConcurrencyApp.swift */,
 				DF2BFED72A5B655E00E77431 /* Assets.xcassets */,
 				DF2BFED92A5B655E00E77431 /* Preview Content */,
 			);
@@ -67,6 +75,23 @@
 				DF2BFEDA2A5B655E00E77431 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DF2BFEE22A5B6B5200E77431 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DF2BFEE32A5B6B5A00E77431 /* User.swift */,
+				DF2BFEE62A5B6BD100E77431 /* Post.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DF2BFEE82A5B6D6300E77431 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DF2BFEE92A5B6D7B00E77431 /* APIService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,7 +165,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF2BFED62A5B655C00E77431 /* ContentView.swift in Sources */,
-				DF2BFED42A5B655C00E77431 /* ios_concurrency_cwcApp.swift in Sources */,
+				DF2BFEEA2A5B6D7B00E77431 /* APIService.swift in Sources */,
+				DF2BFEE42A5B6B5A00E77431 /* User.swift in Sources */,
+				DF2BFEE72A5B6BD100E77431 /* Post.swift in Sources */,
+				DF59969A2A5B7B2500FCAD68 /* ConcurrencyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
