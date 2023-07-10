@@ -25,6 +25,11 @@ struct PostsListView: View {
                     }
                 }
             }
+            .overlay(content: {
+                if viewModel.isLoading {
+                    ProgressView()
+                }
+            })
             .navigationTitle("Posts")
             .navigationBarTitleDisplayMode(.inline)
             .listStyle(.plain)
