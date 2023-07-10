@@ -11,35 +11,16 @@ struct APIService {
     let urlString: String
     
     func getJSON<T: Decodable>(dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .deferredToDate,
-                                keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy = .convertFromSnakeCase,
-                                completion: @escaping (Result<T, APIError>) -> Void) {
-        guard let url = URL(string: urlString) else {
-            completion(.failure(.invalidUrl))
-            return
-        }
+                               keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy = .convertFromSnakeCase) async throws -> T {
+        guard let url = URL(string: urlString) else { throw APIError.invalidUrl }
         
-        URLSession.shared.dataTask(with: url) { data, response, error in
+        do {
+            let (data, response) = try await URLSession.shared.data(from: url)
+            
             guard let httpResponse = response as? HTTPURLResponse,
                   httpResponse.statusCode == 200
             else {
-                DispatchQueue.main.async {
-                    completion(.failure(.invalidResponseStatus))
-                }
-                return
-            }
-            
-            guard error == nil else {
-                DispatchQueue.main.async {
-                    completion(.failure(.dataTaskError(error!.localizedDescription)))
-                }
-                return
-            }
-            
-            guard let data = data else {
-                DispatchQueue.main.async {
-                    completion(.failure(.corruptData))
-                }
-                return
+                throw APIError.invalidResponseStatus
             }
             
             let decoder = JSONDecoder()
@@ -48,20 +29,14 @@ struct APIService {
             
             do {
                 let decodedData = try decoder.decode(T.self, from: data)
-                DispatchQueue.main.async {
-                    completion(.success(decodedData))
-                }
+                return decodedData
             } catch {
-                DispatchQueue.main.async {
-                    completion(.failure(.decodingError(error.localizedDescription)))
-                }
-                print(error)
+                throw APIError.decodingError(error.localizedDescription)
             }
             
-            
-            
+        } catch {
+            throw APIError.dataTaskError(error.localizedDescription)
         }
-        .resume()
     }
 }
 

@@ -14,25 +14,19 @@ class UsersListViewModel: ObservableObject {
     @Published var errorMessage: String? = nil
     @Published var showAlert = false
     
-    func fetchUsers() {
+    @MainActor
+    func fetchUsers() async {
         let apiService = APIService(urlString: "https://jsonplaceholder.typicode.com/users")
         isLoading = true
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            apiService.getJSON { (result: Result<[User], APIError>) in
-                defer {
-                    self.isLoading = false
-                }
-                
-                switch result {
-                    case .success(let users):
-                        self.users = users
-                    case .failure(let error):
-                        self.errorMessage = error.localizedDescription + "\nPlease contact the developer and provide this error and the steps to reproduce"
-                        self.showAlert = true
-                }
-            }
+        do {
+            users = try await apiService.getJSON()
+        } catch {
+            showAlert = true
+            errorMessage = error.localizedDescription
         }
+        
+        isLoading = false
     }
 }
 

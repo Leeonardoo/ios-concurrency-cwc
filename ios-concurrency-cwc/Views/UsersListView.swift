@@ -42,7 +42,7 @@ struct UsersListView: View {
             .navigationTitle("Users")
             .listStyle(.plain)
             .task {
-                viewModel.fetchUsers()
+                await viewModel.fetchUsers()
             }
         }
     }
