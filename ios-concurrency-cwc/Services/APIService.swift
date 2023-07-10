@@ -22,17 +22,23 @@ struct APIService {
             guard let httpResponse = response as? HTTPURLResponse,
                   httpResponse.statusCode == 200
             else {
-                completion(.failure(.invalidResponseStatus))
+                DispatchQueue.main.async {
+                    completion(.failure(.invalidResponseStatus))
+                }
                 return
             }
             
             guard error == nil else {
-                completion(.failure(.dataTaskError))
+                DispatchQueue.main.async {
+                    completion(.failure(.dataTaskError(error!.localizedDescription)))
+                }
                 return
             }
             
             guard let data = data else {
-                completion(.failure(.corruptData))
+                DispatchQueue.main.async {
+                    completion(.failure(.corruptData))
+                }
                 return
             }
             
@@ -42,9 +48,13 @@ struct APIService {
             
             do {
                 let decodedData = try decoder.decode(T.self, from: data)
-                completion(.success(decodedData))
+                DispatchQueue.main.async {
+                    completion(.success(decodedData))
+                }
             } catch {
-                completion(.failure(.decodingError))
+                DispatchQueue.main.async {
+                    completion(.failure(.decodingError(error.localizedDescription)))
+                }
                 print(error)
             }
             
@@ -55,10 +65,25 @@ struct APIService {
     }
 }
 
-enum APIError: Error {
+enum APIError: Error, LocalizedError {
     case invalidUrl
     case invalidResponseStatus
-    case dataTaskError
+    case dataTaskError(String)
     case corruptData
-    case decodingError
+    case decodingError(String)
+    
+    var errorDescription: String? {
+        return switch self {
+            case .invalidUrl:
+                NSLocalizedString("The endpoint URL is invalid", comment: "")
+            case .invalidResponseStatus:
+                NSLocalizedString("The API failed to issue a valid response", comment: "")
+            case .dataTaskError(let string):
+                string
+            case .corruptData:
+                NSLocalizedString("The data provided appears to be corrupt", comment: "")
+            case .decodingError(let string):
+                string
+        }
+    }
 }
