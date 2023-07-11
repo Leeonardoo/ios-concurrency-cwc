@@ -33,22 +33,22 @@ struct UsersListView: View {
                     }
                 }
             }
-            .overlay(content: {
-                if viewModel.isLoading {
-                    ProgressView()
+            .overlay(
+                Group {
+                    if viewModel.isLoading {
+                        ProgressView()
+                    }
                 }
-            })
-            .alert("Error", isPresented: $viewModel.showAlert, actions: {
-                Button("OK") {}
-            }, message: {
-                if let errorMessage = viewModel.errorMessage {
-                    Text(errorMessage)
-                }
+            )
+            .alert(isPresented: $viewModel.showAlert, content: {
+                Alert(title: Text("Error"), message: Text(viewModel.errorMessage ?? ""))
             })
             .navigationTitle("Users")
             .listStyle(.plain)
-            .task {
-                await viewModel.fetchUsers()
+            .onAppear {
+                Task {
+                    await viewModel.fetchUsers()
+                }
             }
         }
     }

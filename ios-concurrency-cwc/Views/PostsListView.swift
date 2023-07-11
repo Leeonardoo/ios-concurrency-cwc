@@ -20,7 +20,7 @@ struct PostsListView: View {
                         
                         Text(post.body)
                             .font(.callout)
-                            .foregroundStyle(.secondary)
+                            .foregroundColor(.secondary)
                     }
                 }
             }
@@ -30,10 +30,8 @@ struct PostsListView: View {
         }
 }
 
-//#Preview {
-//    let viewModel = PostsListViewModel(forPreview: true)
-//    
-//    return NavigationView {
-//        PostsListView(viewModel: viewModel, userId: 1)
-//    }
-//}
+#Preview {
+    NavigationView {
+        PostsListView(posts: Post.mockPosts)
+    }
+}
