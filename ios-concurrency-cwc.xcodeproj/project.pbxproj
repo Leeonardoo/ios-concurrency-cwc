@@ -21,6 +21,7 @@
 		DF5996C12A5B856D00FCAD68 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5996C02A5B856D00FCAD68 /* MockData.swift */; };
 		DF5996C32A5B86E800FCAD68 /* PostsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5996C22A5B86E800FCAD68 /* PostsListViewModel.swift */; };
 		DF5996C72A5B877800FCAD68 /* PostsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5996C62A5B877800FCAD68 /* PostsListView.swift */; };
+		DF7FDB4A2A5CDF680082578A /* UserAndPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7FDB492A5CDF680082578A /* UserAndPosts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		DF5996C02A5B856D00FCAD68 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MockData.swift; path = ../../../../Documents/MockData.swift; sourceTree = "<group>"; };
 		DF5996C22A5B86E800FCAD68 /* PostsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsListViewModel.swift; sourceTree = "<group>"; };
 		DF5996C62A5B877800FCAD68 /* PostsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsListView.swift; sourceTree = "<group>"; };
+		DF7FDB492A5CDF680082578A /* UserAndPosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAndPosts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				DF2BFEE32A5B6B5A00E77431 /* User.swift */,
 				DF2BFEE62A5B6BD100E77431 /* Post.swift */,
+				DF7FDB492A5CDF680082578A /* UserAndPosts.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF7FDB4A2A5CDF680082578A /* UserAndPosts.swift in Sources */,
 				DF2BFED62A5B655C00E77431 /* UsersListView.swift in Sources */,
 				DF5996BF2A5B854900FCAD68 /* Bundle+Extension.swift in Sources */,
 				DF5996B82A5B82F500FCAD68 /* UsersListViewModel.swift in Sources */,

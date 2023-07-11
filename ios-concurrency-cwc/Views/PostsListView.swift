@@ -9,12 +9,11 @@ import SwiftUI
 
 struct PostsListView: View {
     
-    @StateObject var viewModel = PostsListViewModel()
-    var userId: Int?
+    var posts: [Post]
     
     var body: some View {
             List {
-                ForEach(viewModel.posts) { post in
+                ForEach(posts) { post in
                     VStack(alignment: .leading) {
                         Text(post.title)
                             .font(.headline)
@@ -25,32 +24,16 @@ struct PostsListView: View {
                     }
                 }
             }
-            .overlay(content: {
-                if viewModel.isLoading {
-                    ProgressView()
-                }
-            })
-            .alert("Error", isPresented: $viewModel.showAlert, actions: {
-                Button("OK") {}
-            }, message: {
-                if let errorMessage = viewModel.errorMessage {
-                    Text(errorMessage)
-                }
-            })
             .navigationTitle("Posts")
             .navigationBarTitleDisplayMode(.inline)
             .listStyle(.plain)
-            .task {
-                viewModel.userId = userId
-                await viewModel.fetchPosts()
-            }
         }
 }
 
-#Preview {
-    let viewModel = PostsListViewModel(forPreview: true)
-    
-    return NavigationView {
-        PostsListView(viewModel: viewModel, userId: 1)
-    }
-}
+//#Preview {
+//    let viewModel = PostsListViewModel(forPreview: true)
+//    
+//    return NavigationView {
+//        PostsListView(viewModel: viewModel, userId: 1)
+//    }
+//}
